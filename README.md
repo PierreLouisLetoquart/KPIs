@@ -2,42 +2,42 @@
 
 ## Setup du projet
 
-Clonez le dépôt avec la commande suivante :
+1. Clonez le dépôt avec la commande suivante :
 
 ```sh
 git clone git@github.com:PierreLouisLetoquart/KPIs.git
 ```
 
-Créez un environnement virtuel
+2. Créez un environnement virtuel
 
 ```sh
 python3 -m venv env
 ```
 
-Activez l'environnement virtuel
+3. Activez l'environnement virtuel
 
 ```sh
 source env/bin/activate # Unix based systems
 env\Scripts\activate.bat # Windows
 ```
 
-Installez les dépendances
+4. Installez les dépendances
 
 ```sh
 pip install -r requirements.txt
 ```
 
-Configurez les variables d'env
+5. Configurez les variables d'env
 
 ```sh
 mv .env.example .env
 ```
 
-Une fois la commande précédente executée, allez compléter les variables dans `./.env`
+*Une fois la commande précédente executée, allez compléter les variables dans `./.env`*
 
 ## Fonctions proposées
 
-Le folder `interfaces` est en cours de developpement. Les fonctions proposées ne sont pas tester et pas forcemment fonctionnelles!
+Le folder `interfaces` est en cours de developpement. Les fonctions proposées ne sont pas fonctionnelles!
 
 ### utils/supabaseClient
 
