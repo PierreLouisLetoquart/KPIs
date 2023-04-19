@@ -47,20 +47,20 @@ Avant de lancer le projet, vous devez configurer les variables d'environnement d
 mv .env.example .env
 ```
 
-## Lancer le projet
+## Fonctions proposées
 
-Vous pouvez lancer le projet en exécutant la commande suivante :
+Le folder `interfaces` est en cours de developpement. Les fonctions proposées ne sont pas tester et pas forcemment fonctionnelles!
 
-```sh
-python main.py
-```
+### utils/supabaseClient
 
-Assurez-vous que vous vous trouvez dans le répertoire du projet pour exécuter cette commande.
+| Fonction | Inputs | Outputs | Description |
+| --- | --- | --- | --- |
+| `create_supabase_client` | None | Client | Crée un client supabase pour communiquer avec la bdd grace aux variables d'environnement |
 
-## Désactiver l'environnement virtuel
+### utils/supabaseDataloader
 
-Lorsque vous avez fini de travailler sur le projet, vous pouvez désactiver l'environnement virtuel en utilisant la commande suivante :
-
-```sh
-deactivate
-```
+| Fonction | Inputs | Outputs | Description |
+| --- | --- | --- | --- |
+| `fetch_logs` | supabase (Client), organization (str) | pd.DataFrame | Récupère tous les logs de Supabase pour une organisation spécifique. |
+| `fetch_orders` | supabase (Client), organization_id (int) | pd.DataFrame | Récupère toutes les commandes de Supabase pour une organisation spécifique. |
+| `store_data_to_csv` | data (pd.DataFrame), file_path (str) | None | Stocke le dataframe d'entrée sous forme de fichier CSV au chemin de fichier spécifié. |
