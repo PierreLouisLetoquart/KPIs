@@ -20,7 +20,7 @@ def fetch_logs(supabase: Client, organization: str) -> pd.DataFrame:
         logs_response = supabase.table("logs").select("*").range(start_index, start_index + 1000).eq("organization", organization).execute()
         new_logs = logs_response.data
         logs.extend(new_logs)
-        if (len(new_logs) == 0) | ((start_index % 100000 == 0)) == 0:
+        if (len(new_logs) == 0) | (start_index % 100000 == 0):
             break
         start_index += 1000
 
@@ -50,7 +50,7 @@ def fetch_orders(supabase: Client, organization_id: int) -> pd.DataFrame:
         orders_response = supabase.table("orders").select("*").range(start_index, start_index + 1000).eq("organization_id", organization_id).execute()
         new_orders = orders_response.data
         orders.extend(new_orders)
-        if (len(new_orders) == 0) | ((start_index % 100000 == 0)) == 0:
+        if (len(new_orders) == 0) | (start_index % 100000 == 0):
             break
         start_index += 1000
     
