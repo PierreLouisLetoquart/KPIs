@@ -1,0 +1,11 @@
+# Ignore Python cache files
+__pycache__/
+
+# Ignore .env files
+.env
+
+# Keep .env.example file
+!.env.example
+
+# KPIs csv files
+extract_KPIs/*
