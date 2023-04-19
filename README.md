@@ -67,10 +67,10 @@ Le folder `interfaces` est en cours de developpement. Les fonctions proposées n
 
 ### utils/kpis
 
-| Fonction | Arguments | Description | Renvoie | Exceptions |
-| --- | --- | --- | --- | --- |
-| `count_total_records` | `filename` (str) | Compte le nombre total d'enregistrements dans le fichier spécifié. | `int` : Le nombre total d'enregistrements dans le fichier. | `FileNotFoundError` si le fichier spécifié n'existe pas. |
-| `count_records_by_type` | `filename` (str) | Retourne un dictionnaire avec le nombre d'enregistrements par type d'action du fichier csv spécifié. | `dict` : Un dictionnaire avec le nombre d'enregistrements par type d'action. | `FileNotFoundError` si le fichier spécifié n'existe pas. |
-| `count_records_by_organization` | `filename` (str) | Compte le nombre d'enregistrements pour chaque organisation dans un fichier CSV. | `dict` : Un dictionnaire avec le nombre d'enregistrements pour chaque organisation. | `FileNotFoundError` si le fichier spécifié n'existe pas. |
-| `count_records_by_date` | `filename` (str) | Compte le nombre d'enregistrements dans un fichier CSV par date. | `dict` : Un dictionnaire contenant le nombre d'enregistrements pour chaque date au format 'YYYY-MM-DD'. | `FileNotFoundError` si le fichier spécifié n'existe pas. |
-| `count_distinct_types` | `filename` (str) | Compte les types distincts dans un fichier CSV et les renvoie sous forme de set. | `set` : Un set contenant les types distincts trouvés dans le fichier CSV. | `FileNotFoundError` si le fichier spécifié n'existe pas. |
+| Fonction                      | Inputs            | Outputs                                | Description                                                                                                |
+| -----------------------------|------------------|----------------------------------------| -----------------------------------------------------------------------------------------------------------|
+| `count_total_records`           | filename (str)    | int                                    | Compte le nombre total d'enregistrements dans le fichier spécifié.                                         |
+| `count_records_by_type`         | filename (str)    | dict                                   | Retourne un dictionnaire avec le nombre d'enregistrements par type d'action du fichier csv spécifié.      |
+| `count_records_by_organization` | filename (str)    | dict                                   | Compte le nombre d'enregistrements pour chaque organisation dans un fichier CSV.                           |
+| `count_records_by_date`         | filename (str)    | dict                                   | Compte le nombre d'enregistrements pour chaque date dans un fichier CSV.                                   |
+| `count_distinct_types`          | filename (str)    | set                                    | Compte les types distincts dans un fichier CSV et les renvoie sous forme de set.                            |
