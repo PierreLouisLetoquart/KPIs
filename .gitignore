@@ -9,6 +9,7 @@ __pycache__/
 
 # KPIs csv files
 extract_KPIs/
+data/
 
 # Ignore .DS_Store files
 .DS_Store
