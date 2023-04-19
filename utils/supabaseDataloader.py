@@ -13,11 +13,17 @@ def fetch_logs(supabase: Client, organization: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: A Pandas DataFrame containing the logs data.
     """
-    print(f"Fetching logs for organization: {organization}")
+    print(f"Fetching logs for organization: {organization}\nProgress:\n| ", end="", flush=True)
     logs = []
-    logs_response = supabase.table("logs").select("*").eq("organization", organization).execute()
-    logs.extend(logs_response.data)
-    
+    start_index = 0
+    while True:
+        logs_response = supabase.table("logs").select("*").range(start_index, start_index + 1000).eq("organization", organization).execute()
+        new_logs = logs_response.data
+        logs.extend(new_logs)
+        if (len(new_logs) == 0) | ((start_index % 100000 == 0)) == 0:
+            break
+        start_index += 1000
+
     df_logs = pd.DataFrame(logs)
 
     # correct typo
@@ -39,8 +45,14 @@ def fetch_orders(supabase: Client, organization_id: int) -> pd.DataFrame:
     """
     print(f"Fetching orders for organization ID: {organization_id}")
     orders = []
-    orders_response = supabase.table("orders").select("*").eq("organization_id", organization_id).execute()
-    orders.extend(orders_response.data)
+    start_index = 0
+    while True:
+        orders_response = supabase.table("orders").select("*").range(start_index, start_index + 1000).eq("organization_id", organization_id).execute()
+        new_orders = orders_response.data
+        orders.extend(new_orders)
+        if (len(new_orders) == 0) | ((start_index % 100000 == 0)) == 0:
+            break
+        start_index += 1000
     
     df_orders = pd.DataFrame(orders)
 
