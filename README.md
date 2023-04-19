@@ -5,7 +5,7 @@
 Clonez le dépôt avec la commande suivante :
 
 ```sh
-git clone https://github.com/username/projet.git
+git clone git@github.com:PierreLouisLetoquart/KPIs.git
 ```
 
 ## Créer un environnement virtuel
