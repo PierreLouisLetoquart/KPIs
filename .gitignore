@@ -40,3 +40,7 @@ data/
 
 # Ignore .egg-link files
 *.egg-link
+
+# Ignore example json files
+logExample.json
+orderExample.json
