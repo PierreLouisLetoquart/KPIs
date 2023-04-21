@@ -44,3 +44,7 @@ data/
 # Ignore example json files
 logExample.json
 orderExample.json
+
+# virtualenv
+venv/
+kpis-env/
