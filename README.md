@@ -53,12 +53,17 @@ Le folder `interfaces` est en cours de developpement. Les fonctions proposées n
 | `fetch_orders` | supabase (Client), organization_id (int) | pd.DataFrame | Récupère toutes les commandes de Supabase pour une organisation spécifique. |
 | `store_data_to_csv` | data (pd.DataFrame), file_path (str) | None | Stocke le dataframe d'entrée sous forme de fichier CSV au chemin de fichier spécifié. |
 
-### utils/kpis
+### kpis/basics
 
-| Fonction                      | Inputs            | Outputs                                | Description                                                                                                |
-| -----------------------------|------------------|----------------------------------------| -----------------------------------------------------------------------------------------------------------|
-| `count_total_records`           | filename (str)    | int                                    | Compte le nombre total d'enregistrements dans le fichier spécifié.                                         |
-| `count_records_by_type`         | filename (str)    | dict                                   | Retourne un dictionnaire avec le nombre d'enregistrements par type d'action du fichier csv spécifié.      |
-| `count_records_by_organization` | filename (str)    | dict                                   | Compte le nombre d'enregistrements pour chaque organisation dans un fichier CSV.                           |
-| `count_records_by_date`         | filename (str)    | dict                                   | Compte le nombre d'enregistrements pour chaque date dans un fichier CSV.                                   |
-| `count_distinct_types`          | filename (str)    | set                                    | Compte les types distincts dans un fichier CSV et les renvoie sous forme de set.                            |
+| Fonction | Inputs | Outputs | Description |
+| --- | --- | --- | --- |
+| `count_button_display` | supabase: Client, organization: str='all' | int | Compte le nombre total de fois où le bouton a été affiché. 20% est retiré du fait du bot Google, etc... |
+| `count_button_clicked` | supabase: Client, organization: str='all' | int | Compte le nombre total de fois où le bouton a été cliqué. |
+| `count_user_scan` | supabase: Client, organization: str='all' | int | Compte le nombre total de fois où l'utilisateur s'est scanné. |
+
+### kpis/orders
+
+| Fonction | Inputs | Outputs | Description |
+| --- | --- | --- | --- |
+| `count_total_orders` | filename: str | int | Compte le nombre total de commandes dans un fichier CSV. Renvoie 0 si le fichier n'est pas trouvé. |
+| `count_fringuant_orders` | filename: str | int | Compte le nombre de commandes effectuées grâce à Fringuant dans un fichier CSV. Renvoie 0 si le fichier n'est pas trouvé. |
