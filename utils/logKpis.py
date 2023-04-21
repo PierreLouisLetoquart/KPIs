@@ -71,7 +71,6 @@ def count_records_by_organization(filename):
         print(f"{filename} not found.")
         return {}
 
-
 from datetime import datetime
 
 def count_records_by_date(filename):
@@ -103,7 +102,6 @@ def count_records_by_date(filename):
     except FileNotFoundError:
         print(f"{filename} not found.")
         return {}
-
 
 def count_distinct_types(filename):
     """
