@@ -2,27 +2,32 @@ import os
 import pandas as pd
 from supabase import Client
 
-def fetch_logs(supabase: Client, organization: str) -> pd.DataFrame:
+def fetch_logs(supabase: Client, organization: str = "all") -> pd.DataFrame:
     """
-    Fetches all logs from Supabase for a specific organization.
+    Fetches all logs from Supabase for a specific organization. If no organization is specified, all logs are fetched.
 
     Parameters:
         supabase (Client): The Supabase client instance.
-        organization (str): The name of the organization.
+        organization (str): The name of the organization. Defaults to "all".
 
     Returns:
         pd.DataFrame: A Pandas DataFrame containing the logs data.
     """
-    print(f"Fetching logs for organization: {organization}\nProgress:\n| ", end="", flush=True)
+    print(f"Fetching logs: ", end="", flush=True)
     logs = []
     start_index = 0
     while True:
-        logs_response = supabase.table("logs").select("*").range(start_index, start_index + 1000).eq("organization", organization).execute()
+        if(organization == "all"):
+            logs_response = supabase.table("logs").select("*").range(start_index, start_index + 1000).execute()
+        else:
+            logs_response = supabase.table("logs").select("*").range(start_index, start_index + 1000).eq("organization", organization).execute()
         new_logs = logs_response.data
         logs.extend(new_logs)
         if len(new_logs) == 0:
             break
         start_index += 1000
+        print("=", end="", flush=True)
+    print("")
 
     df_logs = pd.DataFrame(logs)
 
@@ -32,27 +37,32 @@ def fetch_logs(supabase: Client, organization: str) -> pd.DataFrame:
 
     return df_logs
 
-def fetch_orders(supabase: Client, organization_id: int) -> pd.DataFrame:
+def fetch_orders(supabase: Client, organization_id: int = -1) -> pd.DataFrame:
     """
-    Fetches all orders from Supabase for a specific organization.
+    Fetches all orders from Supabase for a specific organization. If no organization is specified, all orders are fetched.
 
     Parameters:
         supabase (Client): The Supabase client instance.
-        organization_id (int): The ID of the organization to fetch orders for.
+        organization_id (int): The ID of the organization to fetch orders for. Defaults to -1.
 
     Returns:
         pd.DataFrame: A Pandas DataFrame containing the orders data.
     """
-    print(f"Fetching orders for organization ID: {organization_id}")
+    print(f"Fetching orders: ", end="", flush=True)
     orders = []
     start_index = 0
     while True:
-        orders_response = supabase.table("orders").select("*").range(start_index, start_index + 1000).eq("organization_id", organization_id).execute()
+        if(organization_id == -1):
+            orders_response = supabase.table("orders").select("*").range(start_index, start_index + 1000).execute()
+        else:
+            orders_response = supabase.table("orders").select("*").range(start_index, start_index + 1000).eq("organization_id", organization_id).execute()
         new_orders = orders_response.data
         orders.extend(new_orders)
         if len(new_orders) == 0:
             break
         start_index += 1000
+        print("=", end="", flush=True)
+    print("")
     
     df_orders = pd.DataFrame(orders)
 
