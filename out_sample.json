@@ -1,0 +1,104 @@
+{
+  "order_created": {
+    "id": 5026165686502,
+    "name": "#3639",
+    "tags": "JUST",
+    "token": "84a0b24fd4e59adef3cff2656a03c5d3",
+    "customer": {
+      "id": 6589691527398,
+      "note": null,
+      "tags": "",
+      "email": "Volondat.pierre@gmail.com",
+      "phone": null,
+      "state": "disabled",
+      "currency": "EUR",
+      "last_name": "Volondat",
+      "created_at": "2022-12-01T19:28:28+01:00",
+      "first_name": "Pierre",
+      "tax_exempt": false,
+      "updated_at": "2022-12-01T19:29:47+01:00",
+      "verified_email": true,
+      "default_address": {
+        "id": 8205208158438,
+        "zip": "75009",
+        "city": "Paris",
+        "name": "Pierre Volondat",
+        "phone": "+33699607998",
+        "company": null,
+        "country": "France",
+        "default": true,
+        "address1": "Square Édouard VII Place Édouard VII   France",
+        "address2": "Stream",
+        "province": null,
+        "last_name": "Volondat",
+        "first_name": "Pierre",
+        "customer_id": 6589691527398,
+        "country_code": "FR",
+        "country_name": "France",
+        "province_code": null
+      },
+      "accepts_marketing": true,
+      "admin_graphql_api_id": "gid://shopify/Customer/6589691527398",
+      "multipass_identifier": null,
+      "sms_marketing_consent": null,
+      "marketing_opt_in_level": "single_opt_in",
+      "email_marketing_consent": {
+        "state": "subscribed",
+        "opt_in_level": "single_opt_in",
+        "consent_updated_at": "2022-12-01T19:28:28+01:00"
+      },
+      "accepts_marketing_updated_at": "2022-12-01T19:28:28+01:00"
+    },
+    "total_tax": "23.33",
+    "line_items": [
+      {
+        "id": 12697522733286,
+        "sku": "COTE-VESTKA-TAIM",
+        "name": "VESTE CÔTELÉ KAKI - M",
+        "grams": 0,
+        "price": "140.00",
+        "title": "VESTE CÔTELÉ KAKI",
+        "duties": [],
+        "vendor": "cotelé-paris",
+        "taxable": false,
+        "quantity": 1,
+        "gift_card": false,
+        "price_set": {
+          "shop_money": { "amount": "140.00", "currency_code": "EUR" },
+          "presentment_money": { "amount": "140.00", "currency_code": "EUR" }
+        },
+        "tax_lines": [
+          {
+            "rate": 0.2,
+            "price": "23.33",
+            "title": "FR TVA",
+            "price_set": {
+              "shop_money": { "amount": "23.33", "currency_code": "EUR" },
+              "presentment_money": { "amount": "23.33", "currency_code": "EUR" }
+            },
+            "channel_liable": null
+          }
+        ],
+        "product_id": 7740325626086,
+        "properties": [],
+        "variant_id": 42801552654566,
+        "variant_title": "M",
+        "product_exists": true,
+        "total_discount": "0.00",
+        "requires_shipping": true,
+        "fulfillment_status": null,
+        "total_discount_set": {
+          "shop_money": { "amount": "0.00", "currency_code": "EUR" },
+          "presentment_money": { "amount": "0.00", "currency_code": "EUR" }
+        },
+        "fulfillment_service": "bigblue-fulfillment",
+        "admin_graphql_api_id": "gid://shopify/LineItem/12697522733286",
+        "discount_allocations": [],
+        "fulfillable_quantity": 1,
+        "variant_inventory_management": "bigblue-fulfillment"
+      }
+    ],
+    "total_price": "140.00",
+    "order_number": 3639
+  }
+}
