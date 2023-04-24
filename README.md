@@ -57,7 +57,7 @@ Ces fonctions permettent de prendre les données de Supabase et de les télécha
 
 ### utils/jsonFilters
 
-Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les sauveguardées dans supabase.
+Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les sauveguarder dans supabase.
 
 | Fonction        | Inputs                           | Outputs                             | Description                                                                      |
 | ---             | ---                              | ---                                 | ---                                                                              |
