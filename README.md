@@ -86,3 +86,19 @@ Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les s
 | --- | --- | --- | --- |
 | `count_total_orders` | filename: str | int | Compte le nombre total de commandes dans un fichier CSV. Renvoie 0 si le fichier n'est pas trouvé. |
 | `count_fringuant_orders` | filename: str | int | Compte le nombre de commandes effectuées grâce à Fringuant dans un fichier CSV. Renvoie 0 si le fichier n'est pas trouvé. |
+
+### kpis/temporalityFilter
+
+Ces fonctions permettent de filtrer et retourner uniquement le dataset sur la periode qui nous interesse.
+
+**Warning**, la fonction `filter_csv_with_period` est un peu du bricolage.
+
+**TODO**: réorganiser le code pour que load_csv soit a la bonne place et revoir les valeurs de retour + date format.
+
+| Fonction | Inputs | Outputs | Description |
+| --- | --- | --- | --- |
+| `load_csv` | `filename: str` | `List[List[str]]` | Charge des données à partir d'un fichier CSV et renvoie une liste de listes.|
+| `check_csv_has_created_at_column` | `input_data: List[List[str]]` | `bool` | Vérifie si une liste de listes contenant des données d'un fichier CSV a une colonne 'created_at'. |
+| `save_csv` | `output_data: List[List[str]], filename: str` | `None` | Enregistre les données dans un fichier CSV. |
+| `get_period_filter` | `period_type: str` | `Tuple[datetime, datetime]` | Retourne un tuple d'objets datetime de début et de fin en fonction du type de période donné. |
+| `filter_csv_with_period` | `input_data: List[List[str]], date_range: Tuple[datetime, datetime]` | `List[List[str]]` | Filtre les données d'un fichier CSV en fonction de la plage de dates spécifiée. |
