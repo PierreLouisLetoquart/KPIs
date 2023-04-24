@@ -1,4 +1,4 @@
-# Exctraction de KPIs
+# Python Functions Fringuant
 
 ## Setup du projet
 
