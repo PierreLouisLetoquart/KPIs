@@ -1,40 +1,134 @@
 import json
 
-def filter(data):
+def filter_order(input: json) -> json:
+    """
+    Filtre et renvoie un objet JSON contenant uniquement les informations
+    pertinentes d'une commande.
+    
+    Args:
+        input (json): un objet JSON contenant des informations de commande.
+    
+    Returns:
+        json: un objet JSON contenant les informations filtrées de la commande.
+    """
+    try:
+        order = input["order_created"]
+    except (KeyError, TypeError):
+        raise ValueError("Entrée invalide : l'objet JSON doit contenir une clé 'order_created'.")
+        
+    try:
+        filtered_order = {}
+        filtered_order["name"] = order["name"]
+        filtered_order["id"] = order["id"]
+        filtered_order["order_number"] = order["order_number"]
+        filtered_order["total_price"] = order["total_price"]
+        filtered_order["total_tax"] = order["total_tax"]
+        filtered_order["customer"] = order["customer"]
+        filtered_order["line_items"] = order["line_items"]
+        filtered_order["tags"] = order["tags"]
+    except KeyError as e:
+        raise ValueError(f"Entrée invalide : la clé {str(e)} est manquante dans l'objet JSON.")
+    except TypeError:
+        raise ValueError("Entrée invalide : l'objet JSON doit être un dictionnaire.")
 
-    # créer un dictionnaire pour stocker les informations du client
-    customer_info = {}
-    customer = data["order_created"]["customer"]
-    customer_info["id"] = customer["id"]
-    customer_info["email"] = customer["email"]
-    customer_info["first_name"] = customer["first_name"]
-    customer_info["last_name"] = customer["last_name"]
-    customer_info["phone"] = customer["default_address"]["phone"]
-    customer_info["address"] = customer["default_address"]["address1"]
-    customer_info["city"] = customer["default_address"]["city"]
-    customer_info["country"] = customer["default_address"]["country"]
+    try:
+        return json.dumps(filtered_order, sort_keys=True)
+    except TypeError:
+        raise ValueError("La conversion en JSON a échoué : l'objet filtré contient des données non-JSON.")
 
-    # créer un dictionnaire pour stocker les informations de l'article
-    line_item_info = {}
-    line_item = data["line_items"][0]
-    line_item_info["id"] = line_item["id"]
-    line_item_info["name"] = line_item["name"]
-    line_item_info["quantity"] = line_item["quantity"]
-    line_item_info["price"] = line_item["price"]
-    line_item_info["tax_rate"] = line_item["tax_lines"][0]["rate"]
-    line_item_info["tax_amount"] = line_item["tax_lines"][0]["price"]
+def filter_logs(input: json) -> json:
+    """
+    Filtre et renvoie un objet JSON contenant uniquement les informations
+    pertinentes d'un journal d'activité.
+    
+    Args:
+        input (json): un objet JSON contenant des informations de journal d'activité.
+    
+    Returns:
+        json: un objet JSON contenant les informations filtrées du journal d'activité.
+    """
+    try:
+        data = input["data"]
+        headers = input["headers"]
+    except (KeyError, TypeError):
+        raise ValueError("Entrée invalide : l'objet JSON doit contenir une clé 'data' et 'headers'.")
+    
+    try:
+        filtered_data = {}
+        filtered_data["fid"] = data["fid"]
+        filtered_data["options"] = data["options"]
+        filtered_variants = []
+        for variant in data["variants"]:
+            filtered_variant = {}
+            filtered_variant["id"] = variant["id"]
+            filtered_variant["name"] = variant["name"]
+            filtered_variant["sku"] = variant["sku"]
+            filtered_variant["title"] = variant["title"]
+            filtered_variant["options"] = variant["options"]
+            filtered_variant["available"] = variant["available"]
+            filtered_variant["compare_at_price"] = variant["compare_at_price"]
+            filtered_variants.append(filtered_variant)
+        filtered_data["variants"] = filtered_variants
+        
+        filtered_headers = {}
+        filtered_headers["origin"] = headers["origin"]  
+        filtered_headers["x-real-ip"] = headers["x-real-ip"]
+        if "x-vercel-ip-country" in headers:
+            filtered_headers["x-vercel-ip-country"] = headers["x-vercel-ip-country"]
+        if "x-vercel-ip-city" in headers:
+            filtered_headers["x-vercel-ip-city"] = headers["x-vercel-ip-city"]
 
-    # créer un dictionnaire pour stocker les informations de la commande
-    order_info = {}
-    order_info["id"] = data["order_created"]["id"]
-    order_info["name"] = data["order_created"]["name"]
-    order_info["customer"] = customer_info
-    order_info["line_item"] = line_item_info
-    order_info["total_price"] = data["order_created"]["total_price"]
-    order_info["total_tax"] = data["order_created"]["total_tax"]
-    order_info["tags"] = data["order_created"]["tags"]
-    order_info["order_number"] = data["order_created"]["order_number"]
+        filtered_log = {}
+        filtered_log["data"] = filtered_data
+        filtered_log["headers"] = filtered_headers
+    except KeyError as e:
+        raise ValueError(f"Entrée invalide : la clé {str(e)} est manquante dans l'objet JSON.")
+    except TypeError:
+        raise ValueError("Entrée invalide : l'objet JSON doit être un dictionnaire.")
+    
+    try:
+        return json.dumps(filtered_log, sort_keys=True)
+    except TypeError:
+        raise ValueError("La conversion en JSON a échoué : l'objet filtré contient des données non-JSON.")
+    
+def load_json_file(filename: str) -> dict:
+    """
+    Charge le contenu d'un fichier JSON dans un dictionnaire Python.
+    
+    Args:
+        filename (str): Le nom de fichier à lire.
+    
+    Returns:
+        dict: Le contenu du fichier JSON sous forme de dictionnaire Python.
+    
+    Raises:
+        FileNotFoundError: Si le fichier spécifié n'existe pas.
+        ValueError: Si le contenu du fichier n'est pas un objet JSON valide.
+    """
+    try:
+        with open(filename, 'r') as f:
+            json_data = json.load(f)
+            if not isinstance(json_data, dict):
+                raise ValueError("Le contenu du fichier doit être un objet JSON valide.")
+            return json_data
+    except FileNotFoundError:
+        print(f"Le fichier '{filename}' n'existe pas.")
+    except json.JSONDecodeError:
+        print(f"Le contenu du fichier '{filename}' n'est pas un objet JSON valide.")
 
-    # retourner l'objet JSON de sortie
-    output_json = json.dumps({"order_created": order_info})
-    return output_json
+def save_json_file(json_data: dict, filename: str) -> None:
+    """
+    Enregistre un dictionnaire Python dans un fichier JSON avec un nom de fichier spécifié.
+    
+    Args:
+        json_data (dict): Le dictionnaire Python à enregistrer dans le fichier JSON.
+        filename (str): Le nom de fichier à écrire.
+    
+    Raises:
+        TypeError: Si le contenu du dictionnaire n'est pas sérialisable en JSON.
+    """
+    try:
+        with open(filename, 'w') as f:
+            json.dump(json_data, f)
+    except TypeError:
+        print(f"Le contenu du dictionnaire n'est pas sérialisable en JSON.")
