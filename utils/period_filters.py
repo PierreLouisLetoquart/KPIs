@@ -40,28 +40,6 @@ def check_csv_has_created_at_column(input_data: List[List[str]]) -> bool:
     else:
         return False
 
-def save_csv(output_data: List[List[str]], filename: str) -> None:
-    """
-    Saves data to a CSV file.
-    
-    Args:
-    output_data (List[List[str]]): A list of lists where each sub-list represents a row of data to be saved in the CSV file.
-    filename (str): The name of the CSV file to save the data to.
-    
-    Returns:
-    None
-    
-    Raises:
-    ValueError: If the file cannot be opened for writing.
-    """
-    try:
-        with open(filename, 'w', newline='') as file:
-            writer = csv.writer(file)
-            for row in output_data:
-                writer.writerow(row)
-    except IOError:
-        raise ValueError(f"Could not open file {filename} for writing")
-
 def get_period_filter(period_type: str) -> Tuple[datetime, datetime]:
     """
     Returns a tuple of start and end datetime objects based on the given period type.
