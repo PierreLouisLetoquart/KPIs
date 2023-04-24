@@ -61,10 +61,10 @@ Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les s
 
 | Fonction        | Inputs                           | Outputs                             | Description                                                                      |
 | ---             | ---                              | ---                                 | ---                                                                              |
-| filter_order    | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'une commande. |
-| filter_logs     | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'un journal d'activité. |
-| load_json_file  | filename: str                    | dict                                | Charge le contenu d'un fichier JSON dans un dictionnaire Python.                   |
-| save_json_file  | json_data: dict, filename: str   | None                                | Enregistre un dictionnaire Python dans un fichier JSON avec un nom de fichier spécifié. |
+| `filter_order`    | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'une commande. |
+| `filter_logs`     | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'un journal d'activité. |
+| `load_json_file`  | filename: str                    | dict                                | Charge le contenu d'un fichier JSON dans un dictionnaire Python.                   |
+| `save_json_file`  | json_data: dict, filename: str   | None                                | Enregistre un dictionnaire Python dans un fichier JSON avec un nom de fichier spécifié. |
 
 ### kpis/basics
 
