@@ -68,6 +68,8 @@ Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les s
 
 ### kpis/basics
 
+**Warning**, Utilise l'API supabase, n'utilise pas l'extract local en csv. (À update)
+
 **WIP**, ces fonctions sont en cours de dev, pas de temporalitée ni de filtrage avancé!
 
 | Fonction | Inputs | Outputs | Description |
