@@ -47,13 +47,28 @@ Le folder `interfaces` est en cours de developpement. Les fonctions proposées n
 
 ### utils/supabaseDataloader
 
+Ces fonctions permettent de prendre les données de Supabase et de les télécharger en local.
+
 | Fonction | Inputs | Outputs | Description |
 | --- | --- | --- | --- |
 | `fetch_logs` | supabase (Client), organization (str) | pd.DataFrame | Récupère tous les logs de Supabase pour une organisation spécifique. |
 | `fetch_orders` | supabase (Client), organization_id (int) | pd.DataFrame | Récupère toutes les commandes de Supabase pour une organisation spécifique. |
 | `store_data_to_csv` | data (pd.DataFrame), file_path (str) | None | Stocke le dataframe d'entrée sous forme de fichier CSV au chemin de fichier spécifié. |
 
+### utils/jsonFilters
+
+Ces fonctions sont utiles pour prétraiter les *logs* et *orders* avant de les sauveguardées dans supabase.
+
+| Fonction        | Inputs                           | Outputs                             | Description                                                                      |
+| ---             | ---                              | ---                                 | ---                                                                              |
+| filter_order    | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'une commande. |
+| filter_logs     | input: json                      | json                                | Filtre et renvoie un objet JSON contenant uniquement les informations pertinentes d'un journal d'activité. |
+| load_json_file  | filename: str                    | dict                                | Charge le contenu d'un fichier JSON dans un dictionnaire Python.                   |
+| save_json_file  | json_data: dict, filename: str   | None                                | Enregistre un dictionnaire Python dans un fichier JSON avec un nom de fichier spécifié. |
+
 ### kpis/basics
+
+**WIP**, ces fonctions sont en cours de dev, pas de temporalitée ni de filtrage avancé!
 
 | Fonction | Inputs | Outputs | Description |
 | --- | --- | --- | --- |
@@ -62,6 +77,8 @@ Le folder `interfaces` est en cours de developpement. Les fonctions proposées n
 | `count_user_scan` | supabase: Client, organization: str='all' | int | Compte le nombre total de fois où l'utilisateur s'est scanné. |
 
 ### kpis/orders
+
+**WIP**, ces fonctions sont en cours de dev, pas de temporalitée ni de filtrage avancé!
 
 | Fonction | Inputs | Outputs | Description |
 | --- | --- | --- | --- |
