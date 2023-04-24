@@ -63,3 +63,28 @@ def count_user_scan(supabase: Client, organization: str = 'all') -> int:
         return int(response.count)
     except:
         return Exception('Error while counting user scan')
+    
+def get_basics_kpis(supabase: Client, organization: str = 'all') -> dict:
+    """
+    Retourne les kpis de base.
+
+    Args:
+        supabase (Client): client supabase pour effectuer les querry.
+        organization (str, optional): L'organisation pour laquelle on veut compter le nbr de scans. Defaults to 'all'.
+
+    Returns:
+        dict: les kpis de base.
+
+    """
+    try:
+        traffic = count_button_display(supabase, organization)
+        conversion = count_button_clicked(supabase, organization) / traffic
+        user_scan = count_user_scan(supabase, organization)
+        return {
+            'traffic': traffic,
+            'conversion': conversion,
+            'user_scan': user_scan
+        }
+        
+    except:
+        return Exception('Error while getting basics kpis')
