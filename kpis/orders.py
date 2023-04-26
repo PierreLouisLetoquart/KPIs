@@ -41,6 +41,8 @@ def count_fringuant_orders(filename: str) -> int:
             reader = csv.DictReader(f)
             for row in reader:
                 if('fringuant' in row['data']):
+                    print(json.dumps(row['data'], indent=4))
+                    print("============================================================")
                     count += 1
             return count
     except FileNotFoundError:
